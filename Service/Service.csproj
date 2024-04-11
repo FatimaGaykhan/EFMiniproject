@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.28">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.28">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.28" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.28" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Repository\Repository.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Services\" />
+    <None Remove="Services\Helpers\" />
+    <None Remove="Services\Interfaces\" />
+    <None Remove="Services\Helpers\Constants\" />
+    <None Remove="Services\Helpers\Enums\" />
+    <None Remove="Services\Helpers\Exceptions\" />
+    <None Remove="Services\Helpers\Extensions\" />
+    <None Remove="Services\DTOs\" />
+    <None Remove="Services\DTOs\Groups\" />
+    <None Remove="Services\DTOs\Educations\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="Services\Helpers\" />
+    <Folder Include="Services\Interfaces\" />
+    <Folder Include="Services\Helpers\Constants\" />
+    <Folder Include="Services\Helpers\Enums\" />
+    <Folder Include="Services\Helpers\Exceptions\" />
+    <Folder Include="Services\Helpers\Extensions\" />
+    <Folder Include="Services\DTOs\" />
+    <Folder Include="Services\DTOs\Groups\" />
+    <Folder Include="Services\DTOs\Educations\" />
+  </ItemGroup>
+</Project>

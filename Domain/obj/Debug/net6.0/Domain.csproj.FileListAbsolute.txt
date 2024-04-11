@@ -1,0 +1,14 @@
+/Users/fatimagaykhanova/Desktop/EFCourseApp/Domain/bin/Debug/net6.0/Domain.deps.json
+/Users/fatimagaykhanova/Desktop/EFCourseApp/Domain/bin/Debug/net6.0/Domain.runtimeconfig.json
+/Users/fatimagaykhanova/Desktop/EFCourseApp/Domain/bin/Debug/net6.0/Domain.dll
+/Users/fatimagaykhanova/Desktop/EFCourseApp/Domain/bin/Debug/net6.0/Domain.pdb
+/Users/fatimagaykhanova/Desktop/EFCourseApp/Domain/obj/Debug/net6.0/Domain.csproj.AssemblyReference.cache
+/Users/fatimagaykhanova/Desktop/EFCourseApp/Domain/obj/Debug/net6.0/Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/fatimagaykhanova/Desktop/EFCourseApp/Domain/obj/Debug/net6.0/Domain.AssemblyInfoInputs.cache
+/Users/fatimagaykhanova/Desktop/EFCourseApp/Domain/obj/Debug/net6.0/Domain.AssemblyInfo.cs
+/Users/fatimagaykhanova/Desktop/EFCourseApp/Domain/obj/Debug/net6.0/Domain.csproj.CoreCompileInputs.cache
+/Users/fatimagaykhanova/Desktop/EFCourseApp/Domain/obj/Debug/net6.0/Domain.dll
+/Users/fatimagaykhanova/Desktop/EFCourseApp/Domain/obj/Debug/net6.0/refint/Domain.dll
+/Users/fatimagaykhanova/Desktop/EFCourseApp/Domain/obj/Debug/net6.0/Domain.pdb
+/Users/fatimagaykhanova/Desktop/EFCourseApp/Domain/obj/Debug/net6.0/Domain.genruntimeconfig.cache
+/Users/fatimagaykhanova/Desktop/EFCourseApp/Domain/obj/Debug/net6.0/ref/Domain.dll

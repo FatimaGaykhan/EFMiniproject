@@ -1,21 +1,39 @@
 ﻿<Properties StartupConfiguration="{9646E597-ABF2-49C6-8EDC-277FBB9ACCF5}|Default">
-  <MonoDevelop.Ide.ItemProperties.EFCourseApp PreferredExecutionTarget="MonoDevelop.Default" FirstBuild="True" />
+  <MonoDevelop.Ide.ItemProperties.EFCourseApp PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.Workbench ActiveDocument="EFCourseApp/Program.cs">
     <Files>
-      <File FileName="EFCourseApp/Program.cs" Line="1" Column="1" />
+      <File FileName="EFCourseApp/Controllers/EducationController.cs" Line="185" Column="1" />
+      <File FileName="EFCourseApp/Controllers/GroupController.cs" Line="1" Column="1" />
+      <File FileName="EFCourseApp/Program.cs" Line="8" Column="1" />
+      <File FileName="Repository/Repositories/Interfaces/IEducationRepository.cs" />
+      <File FileName="Repository/Repositories/EducationRepository.cs" />
+      <File FileName="Service/Services/EducationService.cs" Line="11" Column="43" />
+      <File FileName="Domain/Models/Education.cs" />
+      <File FileName="Repository/Data/AppDbContext.cs" />
+      <File FileName="Service/Services/Interfaces/IEducationService.cs" Line="13" Column="33" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="EFCourseApp" expanded="True">
+            <Node name="Domain" expanded="True" />
             <Node name="EFCourseApp" expanded="True">
+              <Node name="Controllers" expanded="True" />
               <Node name="Program.cs" selected="True" />
+            </Node>
+            <Node name="Repository" expanded="True">
+              <Node name="Data" expanded="True" />
+            </Node>
+            <Node name="Service" expanded="True">
+              <Node name="Services" expanded="True">
+                <Node name="Interfaces" expanded="True" />
+              </Node>
             </Node>
           </Node>
         </State>

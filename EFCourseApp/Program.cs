@@ -1,3 +1,9 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using EFCourseApp.Controllers;
 
+EducationController educationController = new EducationController();
+
+//await educationController.Create();
+
+//await educationController.GetAllAsync();
+
+await educationController.DeleteAsync();
