@@ -10,7 +10,7 @@ namespace Service.Services.Interfaces
         Task<ResponseObjectDto> DeleteAsync(int? id);
         Task<ResponseObjectDto> UpdateAsync(Group group);
         Task<Group> GetByIdAsync(int? id);
-        Task<List<Group>> GetAll();
+        Task<List<Group>> GetAllAsync();
         //SearchByGroupName,
         //FilterByEducationName,
         //GetAllWithEducationId,

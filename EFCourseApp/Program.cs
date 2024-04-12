@@ -1,6 +1,7 @@
 ﻿using EFCourseApp.Controllers;
 
 EducationController educationController = new EducationController();
+GroupController groupController = new GroupController();
 
 //await educationController.Create();
 
@@ -10,4 +11,6 @@ EducationController educationController = new EducationController();
 
 //await educationController.GetByIdAsync();
 
-await educationController.UpdateAsync();
+//await educationController.UpdateAsync();
+
+await groupController.CreateAsync();

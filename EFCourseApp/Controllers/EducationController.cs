@@ -421,7 +421,10 @@ namespace EFCourseApp.Controllers
             }
         }
 
+        public async Task SearchByName()
+        {
 
+        }
 
     }
 }

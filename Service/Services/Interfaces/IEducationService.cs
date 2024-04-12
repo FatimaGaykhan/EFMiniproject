@@ -12,11 +12,12 @@ namespace Service.Services.Interfaces
         Task<ResponseObjectDto> UpdateAsync(Education education);
         Task<Education> GetByIdAsync(int? id);
         Task<List<Education>> GetAllAsync();
+        //Task<string>
         //Task<List<EducationWithGroupDto>> GetAllWithGroupsAsync();
 
         //GetAllGroupsByEducation,
         //SortByCreatedDate,
-        //SearchByEducationName,
+        
     }
 }
 

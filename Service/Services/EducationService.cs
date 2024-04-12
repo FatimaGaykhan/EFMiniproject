@@ -78,6 +78,7 @@ namespace Service.Services
 
             existingEducation.Name = education.Name;
             existingEducation.Color = education.Color;
+            existingEducation.CreatedDate = DateTime.Now;
 
 
             await _educationRepository.UpdateAsync(existingEducation);

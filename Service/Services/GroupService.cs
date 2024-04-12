@@ -16,14 +16,7 @@ namespace Service.Services
         }
         public async Task<ResponseObjectDto> CreateAsync(Group group)
         {
-            if (group is null)
-            {
-                return new ResponseObjectDto() { Message = "Data cannot be null", StatusCode = 400 };
-            }
-            else if (await _groupRepository.IsExistAsync(g => g.Name.Trim().ToLower() == group.Name.Trim().ToLower()))
-            {
-                return new ResponseObjectDto() { Message = "This group is exist", StatusCode = 400 };
-            }
+            if (group is null) throw new ArgumentNullException();
 
             await _groupRepository.CreateAsync(group);
             await _groupRepository.CommitAsync();
@@ -37,9 +30,10 @@ namespace Service.Services
             throw new NotImplementedException();
         }
 
-        public Task<List<Group>> GetAll()
+        public async Task<List<Group>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _groupRepository.GetAllAsync();
+
         }
 
         public Task<Group> GetByIdAsync(int? id)
