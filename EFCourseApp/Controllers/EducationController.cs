@@ -268,62 +268,70 @@ namespace EFCourseApp.Controllers
 
         public async Task UpdateAsync()
         {
-            ConsoleColor.Cyan.WriteConsole("Type the Id of the data you want to change");
-
-            List<Education> educations = await _educationService.GetAllAsync();
-
-            if (educations.Count == 0) throw new EmptyException(ResponseMessages.NotAddedYet);
-
-            foreach (Education education in educations)
+            try
             {
-                string response = $"Education Id: {education.Id}, Education: {education.Name}, Color: {education.Color}";
-                Console.WriteLine(response);
-            }
+                ConsoleColor.Cyan.WriteConsole("Type the Id of the data you want to change");
+
+                List<Education> educations = await _educationService.GetAllAsync();
+
+                if (educations.Count == 0) throw new EmptyException(ResponseMessages.NotAddedYet);
+
+                foreach (Education education in educations)
+                {
+                    string response = $"Education Id: {education.Id}, Education: {education.Name}, Color: {education.Color}";
+                    Console.WriteLine(response);
+                }
 
             Id: string insertedId = Console.ReadLine();
 
-            string strId = insertedId.Trim();
+                string strId = insertedId.Trim();
 
 
-            if (string.IsNullOrWhiteSpace(strId))
-            {
-                ConsoleColor.Red.WriteConsole("Input can't be empty.Please add again.");
-                goto Id;
-            }
-
-            int id;
-
-            bool isCorrectIdFormat = int.TryParse(strId, out id);
-
-            string symbols = "!@#$%^&*()_+-=[]{}|;:',.<>?";
-
-            bool isSymbolById = strId.ContainsSymbol(symbols);
-
-            if (isSymbolById)
-            {
-                ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
-                goto Id;
-            }
-
-            if (id == 0)
-            {
-                ConsoleColor.Red.WriteConsole("Id cannot be eqaul to 0 or negative.Please add again");
-                goto Id;
-            }
-
-            
-
-            if (isCorrectIdFormat)
-            {
-                try
+                if (string.IsNullOrWhiteSpace(strId))
                 {
+                    ConsoleColor.Red.WriteConsole("Input can't be empty.Please add again.");
+                    goto Id;
+                }
+
+                int id;
+
+                bool isCorrectIdFormat = int.TryParse(strId, out id);
+
+                if (!isCorrectIdFormat)
+                {
+                    ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
+                    goto Id;
+                }
+
+
+                string symbols = "!@#$%^&*()_+-=[]{}|;:',.<>?";
+
+                bool isSymbolById = strId.ContainsSymbol(symbols);
+
+                if (isSymbolById)
+                {
+                    ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
+                    goto Id;
+                }
+
+                if (id == 0)
+                {
+                    ConsoleColor.Red.WriteConsole("Id cannot be eqaul to 0 or negative.Please add again");
+                    goto Id;
+                }
+
+
+
+                if (isCorrectIdFormat)
+                {
+
                     Education response = await _educationService.GetByIdAsync(id);
 
                     if (response is null) throw new NotFoundException(ResponseMessages.DataNotFound);
 
                     ConsoleColor.Cyan.WriteConsole("Type the education name:");
 
-                    Name: string insertedName = Console.ReadLine();
+                Name: string insertedName = Console.ReadLine();
 
                     string name = insertedName.Trim().ToLower();
 
@@ -365,7 +373,7 @@ namespace EFCourseApp.Controllers
 
                     ConsoleColor.Cyan.WriteConsole("Type the education color:");
 
-                    Color: string insertedColorName = Console.ReadLine();
+                Color: string insertedColorName = Console.ReadLine();
                     string colorName = insertedColorName.Trim().ToLower();
                     bool isNumeric = colorName.Any(char.IsDigit);
                     bool isCorrectFormatByColorName = colorName.All(char.IsLetter);
@@ -397,17 +405,19 @@ namespace EFCourseApp.Controllers
                     {
                         response.Color = colorName;
                     }
-                }
-                catch (Exception ex)
-                {
-                    ConsoleColor.Red.WriteConsole(ex.Message);
+
+                    await _educationService.UpdateAsync(response);
 
                 }
+                else
+                {
+                    ConsoleColor.Red.WriteConsole("Id format is wrong. Please add again");
+                    goto Id;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ConsoleColor.Red.WriteConsole("Id format is wrong. Please add again");
-                goto Id;
+                Console.WriteLine(ex.Message);
             }
         }
 
