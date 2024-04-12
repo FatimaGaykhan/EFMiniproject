@@ -6,33 +6,41 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="EFCourseApp/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Service/Services/EducationService.cs">
     <Files>
-      <File FileName="EFCourseApp/Controllers/EducationController.cs" Line="258" Column="25" />
-      <File FileName="EFCourseApp/Controllers/GroupController.cs" />
-      <File FileName="EFCourseApp/Program.cs" Line="11" Column="42" />
-      <File FileName="Repository/Repositories/Interfaces/IEducationRepository.cs" />
-      <File FileName="Repository/Repositories/EducationRepository.cs" />
-      <File FileName="Service/Services/EducationService.cs" Line="11" Column="43" />
-      <File FileName="Domain/Models/Education.cs" />
-      <File FileName="Repository/Data/AppDbContext.cs" />
-      <File FileName="Service/Services/Interfaces/IEducationService.cs" />
+      <File FileName="EFCourseApp/Controllers/EducationController.cs" Line="270" Column="1" />
+      <File FileName="Service/Services/EducationService.cs" Line="65" Column="1" />
+      <File FileName="EFCourseApp/Program.cs" Line="13" Column="1" />
+      <File FileName="Service/Services/Interfaces/IEducationService.cs" Line="13" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="EFCourseApp" expanded="True">
-            <Node name="Domain" expanded="True" />
+            <Node name="Domain" expanded="True">
+              <Node name="Models" expanded="True" />
+            </Node>
             <Node name="EFCourseApp" expanded="True">
               <Node name="Controllers" expanded="True" />
-              <Node name="Program.cs" selected="True" />
             </Node>
             <Node name="Repository" expanded="True">
               <Node name="Data" expanded="True" />
+              <Node name="Repositories" expanded="True">
+                <Node name="Interfaces" expanded="True" />
+              </Node>
             </Node>
             <Node name="Service" expanded="True">
               <Node name="Services" expanded="True">
+                <Node name="DTOs" expanded="True">
+                  <Node name="Educations" expanded="True" />
+                  <Node name="Responses" expanded="True" />
+                </Node>
+                <Node name="Helpers" expanded="True">
+                  <Node name="Exceptions" expanded="True" />
+                  <Node name="Extensions" expanded="True" />
+                </Node>
                 <Node name="Interfaces" expanded="True" />
+                <Node name="EducationService.cs" selected="True" />
               </Node>
             </Node>
           </Node>

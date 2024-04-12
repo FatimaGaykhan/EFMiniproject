@@ -8,4 +8,6 @@ EducationController educationController = new EducationController();
 
 //await educationController.DeleteAsync();
 
-await educationController.GetByIdAsync();
+//await educationController.GetByIdAsync();
+
+await educationController.UpdateAsync();

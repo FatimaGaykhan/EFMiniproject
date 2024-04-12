@@ -34,28 +34,24 @@ namespace EFCourseApp.Controllers
                     goto Name;
                 }
 
+
                 List<Education> response = await _educationService.GetAllAsync();
 
-				foreach (Education education in response)
-				{
-					if (education.Name == educationName)
-					{
+                foreach (Education education in response)
+                {
+                    if (education.Name == educationName)
+                    {
                         ConsoleColor.Red.WriteConsole("Education name already exists.Please add again");
                         goto Name;
                     }
-				}
-
-              
-
-                bool ContainsSymbol(string str)
-                {
-                    string symbols = "!@#$%^&*()_+-=[]{}|;:',.<>?";
-
-                    return str.Any(c => symbols.Contains(c));
                 }
-                
 
-                if (ContainsSymbol(educationName))
+                string symbols = "!@#$%^&*()_+-=[]{}|;:',.<>?";
+
+                bool isSymbolByName = educationName.ContainsSymbol(symbols);
+
+
+                if (isSymbolByName)
                 {
                     ConsoleColor.Red.WriteConsole("Education name format is wrong.Please add again");
                     goto Name;
@@ -82,16 +78,17 @@ namespace EFCourseApp.Controllers
                 }
 
                 foreach (Education education in response)
-				{
-					if (education.Color == color)
-					{
+                {
+                    if (education.Color == color)
+                    {
                         ConsoleColor.Red.WriteConsole("Color already exists.Please add again");
                         goto Color;
                     }
-				}
+                }
 
+                bool isSymbolByColor = color.ContainsSymbol(symbols);
 
-                if (ContainsSymbol(color))
+                if (isSymbolByColor)
                 {
                     ConsoleColor.Red.WriteConsole("Color format is wrong.Please add again");
                     goto Color;
@@ -161,14 +158,16 @@ namespace EFCourseApp.Controllers
             int id;
             bool isCorrectIdFormat = int.TryParse(educationIdStr, out id);
 
-            bool ContainsSymbol(string str)
+            if (id == 0 || id < 0)
             {
-                string symbols = "!@#$%^&*()_+-=[]{}|;:',.<>?";
-
-                return str.Any(c => symbols.Contains(c));
+                ConsoleColor.Red.WriteConsole("Id cannot be eqaul to 0 or negative.Please add again");
+                goto Id;
             }
 
-            if (ContainsSymbol(educationIdStr))
+            string symbols = "!@#$%^&*()_+-=[]{}|;:',.<>?";
+
+            bool isSymbolById = educationIdStr.ContainsSymbol(symbols);
+            if (isSymbolById)
             {
                 ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
                 goto Id;
@@ -226,6 +225,12 @@ namespace EFCourseApp.Controllers
 
             bool isCorrectIdFormatForSymbol = idStr.All(char.IsDigit);
 
+            if (id == 0 || id < 0)
+            {
+                ConsoleColor.Red.WriteConsole("Id cannot be eqaul to 0 or negative.Please add again");
+                goto Id;
+            }
+
             if (!isCorrectIdFormatForSymbol)
             {
                 ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
@@ -260,6 +265,153 @@ namespace EFCourseApp.Controllers
 
 
         }
+
+        public async Task UpdateAsync()
+        {
+            ConsoleColor.Cyan.WriteConsole("Type the Id of the data you want to change");
+
+            List<Education> educations = await _educationService.GetAllAsync();
+
+            if (educations.Count == 0) throw new EmptyException(ResponseMessages.NotAddedYet);
+
+            foreach (Education education in educations)
+            {
+                string response = $"Education Id: {education.Id}, Education: {education.Name}, Color: {education.Color}";
+                Console.WriteLine(response);
+            }
+
+            Id: string insertedId = Console.ReadLine();
+
+            string strId = insertedId.Trim();
+
+
+            if (string.IsNullOrWhiteSpace(strId))
+            {
+                ConsoleColor.Red.WriteConsole("Input can't be empty.Please add again.");
+                goto Id;
+            }
+
+            int id;
+
+            bool isCorrectIdFormat = int.TryParse(strId, out id);
+
+            string symbols = "!@#$%^&*()_+-=[]{}|;:',.<>?";
+
+            bool isSymbolById = strId.ContainsSymbol(symbols);
+
+            if (isSymbolById)
+            {
+                ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
+                goto Id;
+            }
+
+            if (id == 0)
+            {
+                ConsoleColor.Red.WriteConsole("Id cannot be eqaul to 0 or negative.Please add again");
+                goto Id;
+            }
+
+            
+
+            if (isCorrectIdFormat)
+            {
+                try
+                {
+                    Education response = await _educationService.GetByIdAsync(id);
+
+                    if (response is null) throw new NotFoundException(ResponseMessages.DataNotFound);
+
+                    ConsoleColor.Cyan.WriteConsole("Type the education name:");
+
+                    Name: string insertedName = Console.ReadLine();
+
+                    string name = insertedName.Trim().ToLower();
+
+
+                    bool isNumericByName = name.Any(char.IsDigit);
+
+                    bool isSymbolByName = name.ContainsSymbol(symbols);
+
+                    if (isSymbolByName)
+                    {
+                        ConsoleColor.Red.WriteConsole("Education name format is wrong. Please add again");
+                        goto Name;
+                    }
+
+                    if (isNumericByName)
+                    {
+                        ConsoleColor.Red.WriteConsole("Education name format is wrong. Please add again");
+                        goto Name;
+                    }
+
+
+                    if (response.Name == name)
+                    {
+                        ConsoleColor.Red.WriteConsole("Data already exists.Please add again");
+                        goto Name;
+                    }
+
+
+
+                    if (name == "")
+                    {
+                        response.Name = response.Name;
+
+                    }
+                    else
+                    {
+                        response.Name = name;
+                    }
+
+                    ConsoleColor.Cyan.WriteConsole("Type the education color:");
+
+                    Color: string insertedColorName = Console.ReadLine();
+                    string colorName = insertedColorName.Trim().ToLower();
+                    bool isNumeric = colorName.Any(char.IsDigit);
+                    bool isCorrectFormatByColorName = colorName.All(char.IsLetter);
+
+                    if (isNumeric)
+                    {
+                        ConsoleColor.Red.WriteConsole("Color name format is wrong. Please add again");
+                        goto Color;
+                    }
+
+                    if (!isCorrectFormatByColorName)
+                    {
+                        ConsoleColor.Red.WriteConsole("Color name format is wrong. Please add again");
+                        goto Color;
+                    }
+
+
+
+                    if (response.Color == colorName)
+                    {
+                        ConsoleColor.Red.WriteConsole("Data already exists.Please add again");
+                        goto Color;
+                    }
+                    if (colorName == "")
+                    {
+                        response.Color = response.Color;
+                    }
+                    else
+                    {
+                        response.Color = colorName;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ConsoleColor.Red.WriteConsole(ex.Message);
+
+                }
+            }
+            else
+            {
+                ConsoleColor.Red.WriteConsole("Id format is wrong. Please add again");
+                goto Id;
+            }
+        }
+
+
 
     }
 }

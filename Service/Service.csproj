@@ -32,6 +32,7 @@
     <None Remove="Services\DTOs\" />
     <None Remove="Services\DTOs\Groups\" />
     <None Remove="Services\DTOs\Educations\" />
+    <None Remove="Services\DTOs\Responses\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -44,5 +45,6 @@
     <Folder Include="Services\DTOs\" />
     <Folder Include="Services\DTOs\Groups\" />
     <Folder Include="Services\DTOs\Educations\" />
+    <Folder Include="Services\DTOs\Responses\" />
   </ItemGroup>
 </Project>

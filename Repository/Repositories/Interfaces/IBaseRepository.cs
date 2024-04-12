@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using Domain.Common;
 
 namespace Repository.Repositories.Interfaces
@@ -7,11 +8,12 @@ namespace Repository.Repositories.Interfaces
 	{
 		Task CreateAsync(T entity);
 		Task UpdateAsync(T entity);
-		Task DeleteAsync(int? id);
-		Task<T> GetByIdAsync(int? id);
-		Task<List<T>> GetAllAsync();
-        Task<List<T>> GetAllWithExpression(Func<T, bool> predicate);
-
+		Task DeleteAsync(T entity);
+		Task<T> GetAsync(Expression<Func<T, bool>> predicate = null, params string[] includes);
+		Task<List<T>> GetAllAsync(Expression<Func<T,bool>> predicate=null,params string[] includes);
+		Task<int> CommitAsync();
+		Task<bool> IsExistAsync(Expression<Func<T, bool>> predicate = null);
+	
     }
 }
 
