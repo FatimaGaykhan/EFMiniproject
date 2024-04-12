@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using Domain.Models;
 using Service.Services;
 using Service.Services.Helpers.Constants;
@@ -197,7 +198,69 @@ namespace EFCourseApp.Controllers
 
         }
 
+        public async Task GetByIdAsync()
+        {
+            List<Education> educations = await _educationService.GetAllAsync();
 
-	}
+            foreach (var education in educations)
+            {
+                Console.WriteLine($"Education id:{education.Id} Education :{education.Name}");
+            }
+
+            ConsoleColor.Cyan.WriteConsole("Add Id:");
+
+            Id: string insertedId = Console.ReadLine();
+
+            string idStr = insertedId.Trim();
+
+            if (string.IsNullOrWhiteSpace(idStr))
+            {
+                ConsoleColor.Red.WriteConsole("Input can't be empty.PLease add again");
+                goto Id;
+            }
+
+
+            int id;
+
+            bool isCorrectIdFormat = int.TryParse(idStr, out id);
+
+            bool isCorrectIdFormatForSymbol = idStr.All(char.IsDigit);
+
+            if (!isCorrectIdFormatForSymbol)
+            {
+                ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
+                goto Id;
+            }
+
+
+            if (isCorrectIdFormat)
+            {
+                try
+                {
+                    Education education = await _educationService.GetByIdAsync(id);
+
+                    if (education is null) throw new NotFoundException(ResponseMessages.DataNotFound);
+
+                    string data = $"Id: {education.Id},  Education : {education.Name}, Education color : {education.Color}";
+
+                    Console.WriteLine(data);
+
+                }
+                catch (Exception ex)
+                {
+                    ConsoleColor.Red.WriteConsole(ex.Message);
+
+                }
+            }
+            else
+            {
+                ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
+                goto Id;
+            }
+
+
+        }
+
+    }
 }
 

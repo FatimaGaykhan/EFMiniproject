@@ -6,4 +6,6 @@ EducationController educationController = new EducationController();
 
 //await educationController.GetAllAsync();
 
-await educationController.DeleteAsync();
+//await educationController.DeleteAsync();
+
+await educationController.GetByIdAsync();

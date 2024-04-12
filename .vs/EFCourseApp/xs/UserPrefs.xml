@@ -8,15 +8,15 @@
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.Workbench ActiveDocument="EFCourseApp/Program.cs">
     <Files>
-      <File FileName="EFCourseApp/Controllers/EducationController.cs" Line="185" Column="1" />
-      <File FileName="EFCourseApp/Controllers/GroupController.cs" Line="1" Column="1" />
-      <File FileName="EFCourseApp/Program.cs" Line="8" Column="1" />
+      <File FileName="EFCourseApp/Controllers/EducationController.cs" Line="258" Column="25" />
+      <File FileName="EFCourseApp/Controllers/GroupController.cs" />
+      <File FileName="EFCourseApp/Program.cs" Line="11" Column="42" />
       <File FileName="Repository/Repositories/Interfaces/IEducationRepository.cs" />
       <File FileName="Repository/Repositories/EducationRepository.cs" />
       <File FileName="Service/Services/EducationService.cs" Line="11" Column="43" />
       <File FileName="Domain/Models/Education.cs" />
       <File FileName="Repository/Data/AppDbContext.cs" />
-      <File FileName="Service/Services/Interfaces/IEducationService.cs" Line="13" Column="33" />
+      <File FileName="Service/Services/Interfaces/IEducationService.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
