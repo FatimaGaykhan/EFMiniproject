@@ -23,6 +23,12 @@ namespace EFCourseApp.Controllers
 		{
 			try
 			{
+                List<Education> educations = await _educationService.GetAllAsync();
+                if (educations.Count==0)
+                {
+                    ConsoleColor.Red.WriteConsole("Education Not Added Yet");
+                    return;
+                }
                 Console.WriteLine("Add group name:");
 
                 Name: string insertedName = Console.ReadLine();
@@ -85,7 +91,7 @@ namespace EFCourseApp.Controllers
 
                 Console.WriteLine("Add Education Id:");
 
-                List<Education> educations = await _educationService.GetAllAsync();
+               
 
                 foreach (var education in educations)
                 {
@@ -145,6 +151,95 @@ namespace EFCourseApp.Controllers
             }
 			
 		}
+
+        public async Task GetAllAsync()
+        {
+            try
+            {
+                List<Group> groups = await _groupService.GetAllAsync();
+                if (groups.Count == 0) throw new EmptyException(ResponseMessages.NotAddedYet);
+                foreach (Group group in groups)
+                {
+                    string response = $"Group name: {group.Name}";
+                    Console.WriteLine(response);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public async Task GetByIdAsync()
+        {
+            try
+            {
+                List<Group> groups = await _groupService.GetAllAsync();
+
+                if (groups.Count == 0) throw new EmptyException(ResponseMessages.NotAddedYet);
+
+                foreach (var group in groups)
+                {
+                    Console.WriteLine($"Group id:{group.Id} Group name :{group.Name}");
+                }
+
+                ConsoleColor.Cyan.WriteConsole("Add Id:");
+
+                Id: string insertedId = Console.ReadLine();
+
+                string idStr = insertedId.Trim();
+
+                if (string.IsNullOrWhiteSpace(idStr))
+                {
+                    ConsoleColor.Red.WriteConsole("Input can't be empty.Please add again");
+                    goto Id;
+                }
+
+
+                int id;
+
+                bool isCorrectIdFormat = int.TryParse(idStr, out id);
+
+                bool isCorrectIdFormatForSymbol = idStr.All(char.IsDigit);
+
+                if (!isCorrectIdFormatForSymbol)
+                {
+                    ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
+                    goto Id;
+                }
+
+                if (id == 0 || id < 0)
+                {
+                    ConsoleColor.Red.WriteConsole("Id cannot be eqaul to 0 or negative.Please add again");
+                    goto Id;
+                }
+
+
+                if (isCorrectIdFormat)
+                {
+
+                    Group group = await _groupService.GetByIdAsync(id);
+
+                    if (group is null) throw new NotFoundException(ResponseMessages.DataNotFound);
+
+                    string data = $"Id: {group.Id},  Group : {group.Name}, Group Capacity : {group.Capacity}, Education Id:{group.EducationId}";
+
+                    Console.WriteLine(data);
+
+                }
+                else
+                {
+                    ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
+                    goto Id;
+                }
+            }
+            catch (Exception ex)
+            {
+                ConsoleColor.Red.WriteConsole(ex.Message);
+
+            }
+        }
+
 	}
 }
 

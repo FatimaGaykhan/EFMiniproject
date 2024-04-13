@@ -3,6 +3,7 @@ using Domain.Models;
 using Repository.Repositories;
 using Repository.Repositories.Interfaces;
 using Service.Services.DTOs.Responses;
+using Service.Services.Helpers.Exceptions;
 using Service.Services.Interfaces;
 
 namespace Service.Services
@@ -36,9 +37,12 @@ namespace Service.Services
 
         }
 
-        public Task<Group> GetByIdAsync(int? id)
+        public async Task<Group> GetByIdAsync(int? id)
         {
-            throw new NotImplementedException();
+            if (id is null) throw new ArgumentNullException(nameof(id));
+            var result = await _groupRepository.GetAsync(e => e.Id == id);
+            if (result is null) throw new NotFoundException("Data Not Found");
+            return result;
         }
 
         public Task<ResponseObjectDto> UpdateAsync(Group group)
