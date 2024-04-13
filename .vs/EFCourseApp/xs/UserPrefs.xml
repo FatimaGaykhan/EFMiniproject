@@ -6,15 +6,15 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="EFCourseApp/Controllers/GroupController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="EFCourseApp/Program.cs">
     <Files>
-      <File FileName="EFCourseApp/Controllers/EducationController.cs" Line="425" Column="1" />
-      <File FileName="Service/Services/EducationService.cs" Line="81" Column="1" />
-      <File FileName="EFCourseApp/Program.cs" Line="24" Column="37" />
-      <File FileName="Service/Services/Interfaces/IEducationService.cs" />
+      <File FileName="EFCourseApp/Controllers/EducationController.cs" Line="460" Column="126" />
+      <File FileName="Service/Services/EducationService.cs" Line="68" Column="44" />
+      <File FileName="EFCourseApp/Program.cs" Line="26" Column="49" />
+      <File FileName="Service/Services/Interfaces/IEducationService.cs" Line="15" Column="57" />
       <File FileName="Domain/Models/Education.cs" />
-      <File FileName="Service/Services/Interfaces/IGroupService.cs" Line="1" Column="1" />
-      <File FileName="Service/Services/GroupService.cs" Line="77" Column="60" />
+      <File FileName="Service/Services/Interfaces/IGroupService.cs" />
+      <File FileName="Service/Services/GroupService.cs" />
       <File FileName="EFCourseApp/Controllers/GroupController.cs" Line="469" Column="40" />
     </Files>
     <Pads>
@@ -25,9 +25,8 @@
               <Node name="Models" expanded="True" />
             </Node>
             <Node name="EFCourseApp" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="GroupController.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
+              <Node name="Program.cs" selected="True" />
             </Node>
             <Node name="Repository" expanded="True">
               <Node name="Data" expanded="True" />

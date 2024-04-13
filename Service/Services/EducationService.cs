@@ -65,6 +65,11 @@ namespace Service.Services
 
         }
 
+        public async Task<List<Education>> SearchByEducationNameAsync(string education)
+        {
+            return await _educationRepository.GetAllAsync(m => m.Name == education.Trim() || m.Name.Contains(education.Trim()));
+        }
+
         public async Task<ResponseObjectDto> UpdateAsync(Education education)
         {
             if (education is null) throw new ArgumentNullException();

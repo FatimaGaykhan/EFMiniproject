@@ -21,4 +21,6 @@ GroupController groupController = new GroupController();
 
 //await groupController.DeleteAsync();
 
-await groupController.UpdateAsync();
+//await groupController.UpdateAsync();
+
+//await educationController.SearchByNameAsync();

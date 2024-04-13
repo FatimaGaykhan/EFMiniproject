@@ -432,12 +432,44 @@ namespace EFCourseApp.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                ConsoleColor.Red.WriteConsole(ex.Message);
             }
         }
 
-        public async Task SearchByName()
+        public async Task SearchByNameAsync()
         {
+            try
+            {
+                ConsoleColor.Cyan.WriteConsole("Add education name:");
+                EducationName: string insertedEducationName = Console.ReadLine();
+
+                string educationName = insertedEducationName.Trim().ToLower();
+                if (string.IsNullOrWhiteSpace(educationName))
+                {
+                    ConsoleColor.Red.WriteConsole("Input can't be empty.Please add again");
+                    goto EducationName;
+                }
+                else
+                {
+                    List<Education> educations =await _educationService.SearchByEducationNameAsync(educationName);
+
+                    if (educations.Count == 0) throw new NotFoundException(ResponseMessages.DataNotFound);
+
+                    foreach (Education education in educations)
+                    {
+                        string data = $"Id: {education.Id}, Education : {education.Name}, Education Color : {education.Color}";
+                        Console.WriteLine(data);
+                    }
+
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                ConsoleColor.Red.WriteConsole(ex.Message);
+            }
 
         }
 
