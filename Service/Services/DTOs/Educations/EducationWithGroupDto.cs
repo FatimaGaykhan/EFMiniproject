@@ -6,6 +6,11 @@ namespace Service.Services.DTOs.Educations
 		public string Education { get; set; }
 		public List<string> Groups { get; set; }
 
+		public EducationWithGroupDto()
+		{
+			Groups = new();
+		}
+
 	}
 }
 

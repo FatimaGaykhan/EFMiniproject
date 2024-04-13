@@ -473,6 +473,34 @@ namespace EFCourseApp.Controllers
 
         }
 
+        public async Task GetAllWithGroupsAsync()
+        {
+            try
+            {
+                var educations = await _educationService.GetAllWithGroupsAsync();
+                if (educations.Count == 0)
+                {
+                    ConsoleColor.Red.WriteConsole("Data Not Added Yet");
+                }
+
+                foreach (var education in educations)
+                {
+                    string educationName = $"Education: {education.Education}";
+                    ConsoleColor.Cyan.WriteConsole(educationName);
+                    foreach (var group in education.Groups)
+                    {
+                        string groupName = $"Group: {group}";
+                        ConsoleColor.Green.WriteConsole(groupName);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ConsoleColor.Red.WriteConsole(ex.Message);
+
+            }
+        }
+
     }
 }
 

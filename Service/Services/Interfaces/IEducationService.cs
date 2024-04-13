@@ -13,11 +13,11 @@ namespace Service.Services.Interfaces
         Task<Education> GetByIdAsync(int? id);
         Task<List<Education>> GetAllAsync();
         Task<List<Education>> SearchByEducationNameAsync(string education);
-        //Task<List<EducationWithGroupDto>> GetAllWithGroupsAsync();
+        Task<List<EducationWithGroupDto>> GetAllWithGroupsAsync();
 
         //GetAllGroupsByEducation,
         //SortByCreatedDate,
-        
+
     }
 }
 

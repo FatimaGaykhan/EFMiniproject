@@ -51,10 +51,17 @@ namespace Service.Services
             return await _educationRepository.GetAllAsync();
         }
 
-        //public async Task<List<EducationWithGroupDto>> GetAllWithGroupsAsync()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public async Task<List<EducationWithGroupDto>> GetAllWithGroupsAsync()
+        {
+            List<Education> educations = await _educationRepository.GetAllAsync(null, "Groups");
+            List<EducationWithGroupDto> educationWithGroupDtos = new();
+            foreach (Education education in educations)
+            {
+                educationWithGroupDtos.Add(new EducationWithGroupDto() { Education = education.Name, Groups = education.Groups.Select(g => g.Name).ToList() });
+            }
+
+            return educationWithGroupDtos;
+        }
 
         public async Task<Education> GetByIdAsync(int? id)
         {
