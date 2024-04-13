@@ -11,7 +11,7 @@ namespace Service.Services.Interfaces
         Task<ResponseObjectDto> UpdateAsync(Group group);
         Task<Group> GetByIdAsync(int? id);
         Task<List<Group>> GetAllAsync();
-        //SearchByGroupName,
+        Task<List<Group>> SearchByGroupName(string group);
         //FilterByEducationName,
         //GetAllWithEducationId,
         //SortWithCapacity

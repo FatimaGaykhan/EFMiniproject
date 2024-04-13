@@ -513,6 +513,41 @@ namespace EFCourseApp.Controllers
                 ConsoleColor.Red.WriteConsole(ex.Message);
             }
         }
+
+        public async Task SearchByNameAsync()
+        {
+            try
+            {
+                ConsoleColor.Cyan.WriteConsole("Add group name:");
+                GroupName: string insertedGroupName = Console.ReadLine();
+
+                string groupName = insertedGroupName.Trim().ToLower();
+                if (string.IsNullOrWhiteSpace(groupName))
+                {
+                    ConsoleColor.Red.WriteConsole("Input can't be empty.Please add again");
+                    goto GroupName;
+                }
+                else
+                {
+                    List<Group> groups = await _groupService.SearchByGroupName(groupName);
+
+                    if (groups.Count == 0) throw new NotFoundException(ResponseMessages.DataNotFound);
+
+                    foreach (Group group in groups)
+                    {
+                        string data = $"Id: {group.Id}, Group Name : {group.Name}, Group Capacity : {group.Capacity}";
+                        Console.WriteLine(data);
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ConsoleColor.Red.WriteConsole(ex.Message);
+
+            }
+        }
 	}
 }
 

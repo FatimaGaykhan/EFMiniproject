@@ -24,3 +24,5 @@ GroupController groupController = new GroupController();
 //await groupController.UpdateAsync();
 
 //await educationController.SearchByNameAsync();
+
+await groupController.SearchByNameAsync();

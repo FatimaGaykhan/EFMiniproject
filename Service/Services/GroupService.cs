@@ -54,6 +54,11 @@ namespace Service.Services
             return result;
         }
 
+        public async Task<List<Group>> SearchByGroupName(string group)
+        {
+            return await _groupRepository.GetAllAsync(m => m.Name == group.Trim() || m.Name.Contains(group.Trim()));
+        }
+
         public async Task<ResponseObjectDto> UpdateAsync(Group group)
         {
             if (group is null) throw new ArgumentNullException();
