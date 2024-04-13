@@ -158,7 +158,27 @@ namespace EFCourseApp.Controllers
                 }
 
                 int id;
+
+                string symbols = "!@#$%^&*()_+-=[]{}|;:',.<>?";
+
+
                 bool isCorrectIdFormat = int.TryParse(educationIdStr, out id);
+
+                bool isLetterById = educationIdStr.Any(char.IsLetter);
+
+                if (isLetterById)
+                {
+                    ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
+                    goto Id;
+                }
+
+                bool isSymbolById = educationIdStr.ContainsSymbol(symbols);
+
+                if (isSymbolById)
+                {
+                    ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
+                    goto Id;
+                }
 
                 if (id == 0 || id < 0)
                 {
@@ -166,14 +186,6 @@ namespace EFCourseApp.Controllers
                     goto Id;
                 }
 
-                string symbols = "!@#$%^&*()_+-=[]{}|;:',.<>?";
-
-                bool isSymbolById = educationIdStr.ContainsSymbol(symbols);
-                if (isSymbolById)
-                {
-                    ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
-                    goto Id;
-                }
 
                 if (isCorrectIdFormat)
                 {

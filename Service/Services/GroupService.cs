@@ -26,9 +26,18 @@ namespace Service.Services
 
         }
 
-        public Task<ResponseObjectDto> DeleteAsync(int? id)
+        public async Task<ResponseObjectDto> DeleteAsync(int? id)
         {
-            throw new NotImplementedException();
+            if (id is null) throw new ArgumentNullException(nameof(id));
+
+            var data = await _groupRepository.GetAsync(e => e.Id == id);
+
+            if (data is null) throw new NotFoundException("Data Not Found");
+
+            await _groupRepository.DeleteAsync(data);
+            await _groupRepository.CommitAsync();
+
+            return new ResponseObjectDto() { Message = "This group successfully deleted", StatusCode = 200 };
         }
 
         public async Task<List<Group>> GetAllAsync()

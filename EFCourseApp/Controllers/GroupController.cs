@@ -240,6 +240,82 @@ namespace EFCourseApp.Controllers
             }
         }
 
+        public async Task DeleteAsync()
+        {
+            try
+            {
+                List<Group> groups = await _groupService.GetAllAsync();
+
+                if (groups.Count == 0) throw new EmptyException(ResponseMessages.NotAddedYet);
+
+                foreach (Group group in groups)
+                {
+                    string response = $"Group Id: {group.Id}, Group: {group.Name}, Capacity: {group.Capacity}";
+                    Console.WriteLine(response);
+                }
+
+                ConsoleColor.Cyan.WriteConsole("Add Group Id:");
+
+                Id: string insertedGroupId = Console.ReadLine();
+
+                string groupIdStr = insertedGroupId.Trim().ToLower();
+
+                if (string.IsNullOrWhiteSpace(groupIdStr))
+                {
+                    ConsoleColor.Red.WriteConsole("Input can't be empty.Please add again");
+                    goto Id;
+                }
+
+                int id;
+                string symbols = "!@#$%^&*()_+-=[]{}|;:',.<>?";
+
+                bool isCorrectIdFormat = int.TryParse(groupIdStr, out id);
+
+                bool isLetterById = groupIdStr.Any(char.IsLetter);
+
+                if (isLetterById)
+                {
+                    ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
+                    goto Id;
+                }
+
+
+                bool isSymbolById = groupIdStr.ContainsSymbol(symbols);
+
+
+                if (isSymbolById)
+                {
+                    ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
+                    goto Id;
+                }
+
+                if (id == 0 || id < 0)
+                {
+                    ConsoleColor.Red.WriteConsole("Id cannot be eqaul to 0 or negative.Please add again");
+                    goto Id;
+                }
+
+                if (isCorrectIdFormat)
+                {
+                    var data = await _groupService.GetByIdAsync(id);
+                    if (data is not null)
+                    {
+                        await _groupService.DeleteAsync(id);
+                        ConsoleColor.Green.WriteConsole("Data successfully deleted");
+                    }
+                }
+                else
+                {
+                    ConsoleColor.Red.WriteConsole("Id format is wrong. Please add again");
+                    goto Id;
+                }
+            }
+            catch (Exception ex)
+            {
+                ConsoleColor.Red.WriteConsole(ex.Message);
+
+            }
+        }
 	}
 }
 
