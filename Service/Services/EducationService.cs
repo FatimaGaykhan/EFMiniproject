@@ -48,7 +48,7 @@ namespace Service.Services
 
         public async Task<List<Education>> GetAllAsync()
         {
-            return await _educationRepository.GetAllAsync();
+            return await _educationRepository.GetAllAsync(null,"Groups");
         }
 
         public async Task<List<EducationWithGroupDto>> GetAllWithGroupsAsync()

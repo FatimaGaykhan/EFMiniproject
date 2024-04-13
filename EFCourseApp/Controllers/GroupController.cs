@@ -2,6 +2,7 @@
 using System.Drawing;
 using Domain.Models;
 using Service.Services;
+using Service.Services.DTOs.Groups;
 using Service.Services.Helpers.Constants;
 using Service.Services.Helpers.Exceptions;
 using Service.Services.Helpers.Extensions;
@@ -460,47 +461,59 @@ namespace EFCourseApp.Controllers
 
                     string strEducationId = insertedEducationId.Trim();
 
-                    int educationId;
-
-                    bool isCorrectEducationIdFormat = int.TryParse(strEducationId, out educationId);
-
-                    Education educationResult = await _educationService.GetByIdAsync(educationId);
-
-                    if (educationResult is null) throw new NotFoundException(ResponseMessages.DataNotFound);
-
-                    //if (!isCorrectEducationIdFormat)
-                    //{
-                    //    ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
-                    //    goto EducationId;
-                    //}
-
-                    bool isSymbolByEducationId = strEducationId.ContainsSymbol(symbols);
-
-                    if (isSymbolByEducationId)
-                    {
-                        ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
-                        goto EducationId;
-                    }
-
-                    
-
-                    if (response.EducationId == educationId)
-                    {
-                        ConsoleColor.Red.WriteConsole("Data already exists.Please add again");
-                        goto EducationId;
-                    }
-
-                    if (strEducationId == "")
+                    if (strEducationId=="")
                     {
                         response.EducationId = response.EducationId;
+
                     }
                     else
                     {
-                        response.EducationId = educationId;
+                        int educationId;
+
+                        bool isCorrectEducationIdFormat = int.TryParse(strEducationId, out educationId);
+
+                       
+
+                        Education educationResult = await _educationService.GetByIdAsync(educationId);
+
+                        if (educationResult is null) throw new NotFoundException(ResponseMessages.DataNotFound);
+
+                        //if (!isCorrectEducationIdFormat)
+                        //{
+                        //    ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
+                        //    goto EducationId;
+                        //}
+
+                        bool isSymbolByEducationId = strEducationId.ContainsSymbol(symbols);
+
+                        if (isSymbolByEducationId)
+                        {
+                            ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
+                            goto EducationId;
+                        }
+
+
+
+                        if (response.EducationId == educationId)
+                        {
+                            ConsoleColor.Red.WriteConsole("Data already exists.Please add again");
+                            goto EducationId;
+                        }
+
+                        if (educationId == 0)
+                        {
+                            response.EducationId = response.EducationId;
+                        }
+                        else
+                        {
+                            response.EducationId = educationId;
+
+                        }
 
                     }
 
-                    
+
+
 
                     await _groupService.UpdateAsync(response);
                     ConsoleColor.Green.WriteConsole("Data successfully updated");
@@ -541,6 +554,75 @@ namespace EFCourseApp.Controllers
 
 
                 }
+            }
+            catch (Exception ex)
+            {
+                ConsoleColor.Red.WriteConsole(ex.Message);
+
+            }
+        }
+
+        public async Task GetAllWithEducationId()
+        {
+            try
+            {
+
+                    ConsoleColor.Cyan.WriteConsole("Add Id:");
+
+                    Id: string insertedId = Console.ReadLine();
+
+                    string idStr = insertedId.Trim();
+
+                    if (string.IsNullOrWhiteSpace(idStr))
+                    {
+                        ConsoleColor.Red.WriteConsole("Input can't be empty.Please add again");
+                        goto Id;
+                    }
+
+                    int id;
+
+                    bool isCorrectIdFormat = int.TryParse(idStr, out id);
+
+                    bool isCorrectIdFormatForSymbol = idStr.All(char.IsDigit);
+
+                    if (!isCorrectIdFormatForSymbol)
+                    {
+                        ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
+                        goto Id;
+                    }
+
+                    if (id == 0 || id < 0)
+                    {
+                        ConsoleColor.Red.WriteConsole("Id cannot be eqaul to 0 or negative.Please add again");
+                        goto Id;
+                    }
+
+                    if (isCorrectIdFormat)
+                    {
+
+                        List<GroupWithEducationIdDto> result = await _groupService.GetAllWithEducationId(id);
+
+                        if (result.Count==0)
+                        {   
+                           ConsoleColor.Red.WriteConsole("Data Not Found");
+
+                        }
+
+                        foreach (var item in result)
+                        {
+                        ConsoleColor.Cyan.WriteConsole($"Groups:{item.Group}");
+
+                        }
+
+
+
+                    }
+                    else
+                    {
+                        ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
+                        goto Id;
+                    }
+                
             }
             catch (Exception ex)
             {

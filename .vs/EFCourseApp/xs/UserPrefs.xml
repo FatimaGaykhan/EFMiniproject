@@ -1,24 +1,29 @@
 ﻿<Properties StartupConfiguration="{9646E597-ABF2-49C6-8EDC-277FBB9ACCF5}|Default">
   <MonoDevelop.Ide.ItemProperties.EFCourseApp PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/fatimagaykhanova/Desktop/EFCourseApp/EFCourseApp/Controllers/GroupController.cs" relfile="EFCourseApp/Controllers/GroupController.cs" line="460" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Service/Services/Interfaces/IGroupService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="EFCourseApp/Program.cs">
     <Files>
-      <File FileName="EFCourseApp/Controllers/EducationController.cs" Line="498" Column="14" />
-      <File FileName="Service/Services/EducationService.cs" Line="54" Column="56" />
-      <File FileName="EFCourseApp/Program.cs" Line="30" Column="53" />
-      <File FileName="Service/Services/Interfaces/IEducationService.cs" Line="16" Column="65" />
-      <File FileName="Domain/Models/Education.cs" Line="14" Column="35" />
-      <File FileName="Service/Services/Interfaces/IGroupService.cs" Line="17" Column="1" />
-      <File FileName="Service/Services/GroupService.cs" />
-      <File FileName="EFCourseApp/Controllers/GroupController.cs" />
-      <File FileName="Service/Services/DTOs/Responses/ResponseObjectDto.cs" Line="1" Column="1" />
-      <File FileName="Service/Services/DTOs/Educations/EducationWithGroupDto.cs" Line="11" Column="19" />
-      <File FileName="Repository/Repositories/BaseRepository.cs" Line="1" Column="1" />
+      <File FileName="EFCourseApp/Controllers/EducationController.cs" Line="501" Column="14" />
+      <File FileName="Service/Services/EducationService.cs" Line="51" Column="74" />
+      <File FileName="EFCourseApp/Program.cs" Line="25" Column="1" />
+      <File FileName="Service/Services/Interfaces/IEducationService.cs" Line="17" Column="1" />
+      <File FileName="Domain/Models/Education.cs" Line="14" Column="31" />
+      <File FileName="Service/Services/Interfaces/IGroupService.cs" Line="16" Column="73" />
+      <File FileName="Service/Services/GroupService.cs" Line="51" Column="55" />
+      <File FileName="EFCourseApp/Controllers/GroupController.cs" Line="475" Column="24" />
+      <File FileName="Service/Services/DTOs/Responses/ResponseObjectDto.cs" />
+      <File FileName="Service/Services/DTOs/Educations/EducationWithGroupDto.cs" Line="12" Column="4" />
+      <File FileName="Repository/Repositories/BaseRepository.cs" Line="18" Column="40" />
+      <File FileName="Service/Services/DTOs/Educations/SortCreatedDateDto.cs" Line="12" Column="1" />
+      <File FileName="Domain/Models/Group.cs" Line="16" Column="1" />
+      <File FileName="Service/Services/DTOs/Groups/GroupWithEducationIdDto.cs" Line="7" Column="45" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -29,6 +34,7 @@
             </Node>
             <Node name="EFCourseApp" expanded="True">
               <Node name="Controllers" expanded="True" />
+              <Node name="Program.cs" selected="True" />
             </Node>
             <Node name="Repository" expanded="True">
               <Node name="Data" expanded="True" />
@@ -40,14 +46,13 @@
               <Node name="Services" expanded="True">
                 <Node name="DTOs" expanded="True">
                   <Node name="Educations" expanded="True" />
+                  <Node name="Groups" expanded="True" />
                 </Node>
                 <Node name="Helpers" expanded="True">
                   <Node name="Exceptions" expanded="True" />
                   <Node name="Extensions" expanded="True" />
                 </Node>
-                <Node name="Interfaces" expanded="True">
-                  <Node name="IGroupService.cs" selected="True" />
-                </Node>
+                <Node name="Interfaces" expanded="True" />
               </Node>
             </Node>
           </Node>

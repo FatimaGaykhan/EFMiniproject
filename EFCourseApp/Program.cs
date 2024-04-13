@@ -29,3 +29,5 @@ GroupController groupController = new GroupController();
 
 //await educationController.GetAllWithGroupsAsync();
 
+//await groupController.GetAllWithEducationId();
+

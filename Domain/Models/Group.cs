@@ -14,6 +14,6 @@ namespace Domain.Models
 		public int EducationId { get; set; }
 		public Education Education { get; set; }
 
-    }
+	}
 }
 

@@ -2,6 +2,8 @@
 using Domain.Models;
 using Repository.Repositories;
 using Repository.Repositories.Interfaces;
+using Service.Services.DTOs.Educations;
+using Service.Services.DTOs.Groups;
 using Service.Services.DTOs.Responses;
 using Service.Services.Helpers.Exceptions;
 using Service.Services.Interfaces;
@@ -44,6 +46,20 @@ namespace Service.Services
         {
             return await _groupRepository.GetAllAsync();
 
+        }
+
+        public async Task<List<GroupWithEducationIdDto>> GetAllWithEducationId(int id)
+        {
+            List<Group> groups = await _groupRepository.GetAllAsync(g=>g.EducationId==id,"Education");
+            List<GroupWithEducationIdDto> groupWithEducationIdDto = new();
+            foreach (Group group in groups)
+            {
+                groupWithEducationIdDto.Add(new GroupWithEducationIdDto() { Group = group.Name, EducationId = group.Education.Id});
+
+                //education.Groups.Select(g => g.Name).ToList()
+            }
+
+            return groupWithEducationIdDto;
         }
 
         public async Task<Group> GetByIdAsync(int? id)
