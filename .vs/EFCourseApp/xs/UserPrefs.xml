@@ -6,16 +6,16 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="EFCourseApp/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="EFCourseApp/Controllers/GroupController.cs">
     <Files>
-      <File FileName="EFCourseApp/Controllers/EducationController.cs" Line="163" Column="1" />
-      <File FileName="Service/Services/EducationService.cs" Line="36" Column="13" />
-      <File FileName="EFCourseApp/Program.cs" Line="23" Column="1" />
+      <File FileName="EFCourseApp/Controllers/EducationController.cs" Line="425" Column="1" />
+      <File FileName="Service/Services/EducationService.cs" Line="81" Column="1" />
+      <File FileName="EFCourseApp/Program.cs" Line="24" Column="37" />
       <File FileName="Service/Services/Interfaces/IEducationService.cs" />
       <File FileName="Domain/Models/Education.cs" />
-      <File FileName="Service/Services/Interfaces/IGroupService.cs" />
-      <File FileName="Service/Services/GroupService.cs" Line="38" Column="35" />
-      <File FileName="EFCourseApp/Controllers/GroupController.cs" Line="282" Column="1" />
+      <File FileName="Service/Services/Interfaces/IGroupService.cs" Line="1" Column="1" />
+      <File FileName="Service/Services/GroupService.cs" Line="77" Column="60" />
+      <File FileName="EFCourseApp/Controllers/GroupController.cs" Line="469" Column="40" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -25,8 +25,9 @@
               <Node name="Models" expanded="True" />
             </Node>
             <Node name="EFCourseApp" expanded="True">
-              <Node name="Controllers" expanded="True" />
-              <Node name="Program.cs" selected="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="GroupController.cs" selected="True" />
+              </Node>
             </Node>
             <Node name="Repository" expanded="True">
               <Node name="Data" expanded="True" />

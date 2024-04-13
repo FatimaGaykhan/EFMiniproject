@@ -20,3 +20,5 @@ GroupController groupController = new GroupController();
 //await groupController.GetByIdAsync();
 
 //await groupController.DeleteAsync();
+
+await groupController.UpdateAsync();

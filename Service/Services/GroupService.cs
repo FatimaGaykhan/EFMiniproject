@@ -54,9 +54,27 @@ namespace Service.Services
             return result;
         }
 
-        public Task<ResponseObjectDto> UpdateAsync(Group group)
+        public async Task<ResponseObjectDto> UpdateAsync(Group group)
         {
-            throw new NotImplementedException();
+            if (group is null) throw new ArgumentNullException();
+
+            Group existingGroup = await _groupRepository.GetAsync(e => e.Id == group.Id);
+
+            if (existingGroup is null)
+            {
+                return new ResponseObjectDto { Message = "Group not found", StatusCode = 400 };
+            }
+
+            existingGroup.Name = group.Name;
+            existingGroup.Capacity = group.Capacity;
+            existingGroup.EducationId = group.EducationId;
+
+
+            await _groupRepository.UpdateAsync(existingGroup);
+            await _groupRepository.CommitAsync();
+
+
+            return new ResponseObjectDto { Message = "Group updated successfully", StatusCode = 200 };
         }
     }
 }

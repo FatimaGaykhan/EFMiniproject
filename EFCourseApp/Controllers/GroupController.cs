@@ -316,6 +316,203 @@ namespace EFCourseApp.Controllers
 
             }
         }
+
+        public async Task UpdateAsync()
+        {
+            try
+            {
+                ConsoleColor.Cyan.WriteConsole("Type the Id of the data you want to change");
+
+                List<Group> groups = await _groupService.GetAllAsync();
+                List<Education> educations = await _educationService.GetAllAsync();
+
+                if (educations.Count == 0) throw new EmptyException(ResponseMessages.NotAddedYet);
+
+                if (groups.Count == 0) throw new EmptyException(ResponseMessages.NotAddedYet);
+
+                foreach (Group group in groups)
+                {
+                    string response = $"Group Id: {group.Id}, Group: {group.Name}, Capacity: {group.Capacity}, Education Id: {group.EducationId}";
+                    Console.WriteLine(response);
+                }
+
+                Id: string insertedId = Console.ReadLine();
+
+                string strId = insertedId.Trim();
+
+                if (string.IsNullOrWhiteSpace(strId))
+                {
+                    ConsoleColor.Red.WriteConsole("Input can't be empty.Please add again.");
+                    goto Id;
+                }
+
+                int id;
+
+                bool isCorrectIdFormat = int.TryParse(strId, out id);
+
+                if (!isCorrectIdFormat)
+                {
+                    ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
+                    goto Id;
+                }
+
+                string symbols = "!@#$%^&*()_+-=[]{}|;:',.<>?";
+
+                bool isSymbolById = strId.ContainsSymbol(symbols);
+
+                if (isSymbolById)
+                {
+                    ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
+                    goto Id;
+                }
+
+                if (id == 0)
+                {
+                    ConsoleColor.Red.WriteConsole("Id cannot be eqaul to 0 or negative.Please add again");
+                    goto Id;
+                }
+
+                if (isCorrectIdFormat)
+                {
+                    Group response = await _groupService.GetByIdAsync(id);
+
+                    if (response is null) throw new NotFoundException(ResponseMessages.DataNotFound);
+
+                    ConsoleColor.Cyan.WriteConsole("Type the group name:");
+
+                    Name: string insertedName = Console.ReadLine();
+
+
+                    string name = insertedName.Trim().ToLower();
+
+                    if (response.Name == name)
+                    {
+                        ConsoleColor.Red.WriteConsole("Data already exists.Please add again");
+                        goto Name;
+                    }
+
+                    if (name == "")
+                    {
+                        response.Name = response.Name;
+
+                    }
+                    else
+                    {
+                        response.Name = name;
+                    }
+
+                    ConsoleColor.Cyan.WriteConsole("Type the group capacity:");
+
+                    Capacity: string insertedCapacity = Console.ReadLine();
+                    string capacity = insertedCapacity.Trim().ToLower();
+
+                    if (capacity == "0")
+                    {
+                        ConsoleColor.Red.WriteConsole("Capacity cannot be eqault to 0.Please Add again");
+                        goto Capacity;
+                    }
+
+                    int capacityNum;
+
+                    bool isCorrectCapacityFormat = int.TryParse(capacity, out capacityNum);
+
+                    bool isCorrectFormatByCapacity = capacity.Any(char.IsLetter);
+
+
+                    bool isSymbolByCapacity = capacity.ContainsSymbol(symbols);
+
+                    if (isCorrectFormatByCapacity)
+                    {
+                        ConsoleColor.Red.WriteConsole("Capacity format is wrong.Please add again");
+                        goto Capacity;
+                    }
+
+                    if (isSymbolByCapacity)
+                    {
+                        ConsoleColor.Red.WriteConsole("Capacity format is wrong.Please add again");
+                        goto Capacity;
+                    }
+
+
+                    if (response.Capacity == capacityNum)
+                    {
+                        ConsoleColor.Red.WriteConsole("Data already exists.Please add again");
+                        goto Capacity;
+                    }
+                    if (capacityNum == 0)
+                    {
+                        response.Capacity = response.Capacity;
+                    }
+                    else
+                    {
+                        response.Capacity = capacityNum;
+                    }
+
+                    ConsoleColor.Cyan.WriteConsole("Type the Education Id:");
+
+                    foreach (Education education in educations)
+                    {
+                        string result = $" Education Id: {education.Id},Education : {education.Name}";
+                        Console.WriteLine(result);
+                    }
+
+                    EducationId: string insertedEducationId = Console.ReadLine();
+
+                    string strEducationId = insertedEducationId.Trim();
+
+                    int educationId;
+
+                    bool isCorrectEducationIdFormat = int.TryParse(strEducationId, out educationId);
+
+                    Education educationResult = await _educationService.GetByIdAsync(educationId);
+
+                    if (educationResult is null) throw new NotFoundException(ResponseMessages.DataNotFound);
+
+                    //if (!isCorrectEducationIdFormat)
+                    //{
+                    //    ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
+                    //    goto EducationId;
+                    //}
+
+                    bool isSymbolByEducationId = strEducationId.ContainsSymbol(symbols);
+
+                    if (isSymbolByEducationId)
+                    {
+                        ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
+                        goto EducationId;
+                    }
+
+                    
+
+                    if (response.EducationId == educationId)
+                    {
+                        ConsoleColor.Red.WriteConsole("Data already exists.Please add again");
+                        goto EducationId;
+                    }
+
+                    if (strEducationId == "")
+                    {
+                        response.EducationId = response.EducationId;
+                    }
+                    else
+                    {
+                        response.EducationId = educationId;
+
+                    }
+
+                    
+
+                    await _groupService.UpdateAsync(response);
+                    ConsoleColor.Green.WriteConsole("Data successfully updated");
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ConsoleColor.Red.WriteConsole(ex.Message);
+            }
+        }
 	}
 }
 
