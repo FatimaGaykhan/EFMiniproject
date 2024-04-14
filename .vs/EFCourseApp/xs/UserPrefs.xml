@@ -1,28 +1,25 @@
 ﻿<Properties StartupConfiguration="{9646E597-ABF2-49C6-8EDC-277FBB9ACCF5}|Default">
   <MonoDevelop.Ide.ItemProperties.EFCourseApp PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/fatimagaykhanova/Desktop/EFCourseApp/EFCourseApp/Controllers/GroupController.cs" relfile="EFCourseApp/Controllers/GroupController.cs" line="460" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="EFCourseApp/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="EFCourseApp/Controllers/EducationController.cs">
     <Files>
-      <File FileName="EFCourseApp/Controllers/EducationController.cs" Line="501" Column="14" />
-      <File FileName="Service/Services/EducationService.cs" Line="51" Column="74" />
-      <File FileName="EFCourseApp/Program.cs" Line="25" Column="1" />
-      <File FileName="Service/Services/Interfaces/IEducationService.cs" Line="17" Column="1" />
-      <File FileName="Domain/Models/Education.cs" Line="14" Column="31" />
-      <File FileName="Service/Services/Interfaces/IGroupService.cs" Line="16" Column="73" />
-      <File FileName="Service/Services/GroupService.cs" Line="51" Column="55" />
-      <File FileName="EFCourseApp/Controllers/GroupController.cs" Line="475" Column="24" />
-      <File FileName="Service/Services/DTOs/Responses/ResponseObjectDto.cs" />
+      <File FileName="EFCourseApp/Controllers/EducationController.cs" Line="554" Column="55" />
+      <File FileName="Service/Services/EducationService.cs" Line="96" Column="1" />
+      <File FileName="EFCourseApp/Program.cs" Line="34" Column="54" />
+      <File FileName="Service/Services/Interfaces/IEducationService.cs" Line="17" Column="78" />
+      <File FileName="Domain/Models/Education.cs" />
+      <File FileName="Service/Services/Interfaces/IGroupService.cs" />
+      <File FileName="Service/Services/GroupService.cs" Line="53" Column="103" />
+      <File FileName="EFCourseApp/Controllers/GroupController.cs" Line="321" Column="40" />
       <File FileName="Service/Services/DTOs/Educations/EducationWithGroupDto.cs" Line="12" Column="4" />
-      <File FileName="Repository/Repositories/BaseRepository.cs" Line="18" Column="40" />
-      <File FileName="Service/Services/DTOs/Educations/SortCreatedDateDto.cs" Line="12" Column="1" />
-      <File FileName="Domain/Models/Group.cs" Line="16" Column="1" />
+      <File FileName="Repository/Repositories/BaseRepository.cs" />
+      <File FileName="Service/Services/DTOs/Educations/SortCreatedDateDto.cs" Line="7" Column="44" />
+      <File FileName="Domain/Models/Group.cs" />
       <File FileName="Service/Services/DTOs/Groups/GroupWithEducationIdDto.cs" Line="7" Column="45" />
     </Files>
     <Pads>
@@ -33,8 +30,9 @@
               <Node name="Models" expanded="True" />
             </Node>
             <Node name="EFCourseApp" expanded="True">
-              <Node name="Controllers" expanded="True" />
-              <Node name="Program.cs" selected="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="EducationController.cs" selected="True" />
+              </Node>
             </Node>
             <Node name="Repository" expanded="True">
               <Node name="Data" expanded="True" />

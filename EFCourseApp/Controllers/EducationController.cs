@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 using Domain.Models;
 using Service.Services;
+using Service.Services.DTOs.Educations;
 using Service.Services.Helpers.Constants;
 using Service.Services.Helpers.Exceptions;
 using Service.Services.Helpers.Extensions;
@@ -500,6 +502,74 @@ namespace EFCourseApp.Controllers
 
             }
         }
+
+        public async Task SortWithCreatedDateAsync()
+        {
+            try
+            {
+                Console.WriteLine("Choose text: asc or desc");
+                Text: string insertedText = Console.ReadLine();
+
+                string text = insertedText.Trim().ToLower();
+
+                if (string.IsNullOrWhiteSpace(text))
+                {
+                    ConsoleColor.Red.WriteConsole("Input can't be empty.Please add again");
+                    goto Text;
+                }
+
+
+                string symbols = "!@#$%^&*()_+-=[]{}|;:',.<>?";
+
+
+                bool isNumericByText = text.Any(char.IsDigit);
+
+
+                bool isSymbolByText = text.ContainsSymbol(symbols);
+
+                if (isSymbolByText)
+                {
+                    ConsoleColor.Red.WriteConsole("Text format is wrong. Please add again");
+                    goto Text;
+                }
+
+                if (isNumericByText)
+                {
+                    ConsoleColor.Red.WriteConsole("Text format is wrong. Please add again");
+                    goto Text;
+                }
+
+                if (text =="asc" || text=="desc")
+                {
+                    List<SortCreatedDateDto> result = await _educationService.SortWithCreatedDateAsync(text);
+
+                    if (result.Count == 0)
+                    {
+                        ConsoleColor.Red.WriteConsole("Data Not Added Yet");
+                    }
+
+
+                    foreach (SortCreatedDateDto item in result)
+                    {
+                        ConsoleColor.Cyan.WriteConsole($"Education: {item.Education} , Created Date: {item.CreatedDate:yyyy-MM-dd HH:mm:ss}");
+                    }
+
+                }
+                else
+                {
+                    ConsoleColor.Red.WriteConsole("Text must be asc or desc. Please add again");
+                    goto Text;
+                }
+
+      
+
+            }
+            catch (Exception ex)
+            {
+                ConsoleColor.Red.WriteConsole(ex.Message);
+            }
+        }
+
 
     }
 }

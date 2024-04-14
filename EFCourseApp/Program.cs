@@ -31,3 +31,4 @@ GroupController groupController = new GroupController();
 
 //await groupController.GetAllWithEducationId();
 
+await educationController.SortWithCreatedDateAsync();

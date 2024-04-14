@@ -77,6 +77,38 @@ namespace Service.Services
             return await _educationRepository.GetAllAsync(m => m.Name == education.Trim() || m.Name.Contains(education.Trim()));
         }
 
+        public async Task<List<SortCreatedDateDto>> SortWithCreatedDateAsync(string text)
+        {
+            List<Education> educations = await _educationRepository.GetAllAsync();
+
+            List<SortCreatedDateDto> sortCreatedDateDtos = new();
+            if (text=="asc")
+            {
+
+                List<Education> orderedListByAsc = educations.OrderBy(e => e.CreatedDate).ToList();
+
+
+                foreach (Education item in orderedListByAsc)
+                {
+                    sortCreatedDateDtos.Add(new SortCreatedDateDto() { Education = item.Name, CreatedDate = item.CreatedDate });
+                }
+            }
+
+            if(text=="desc")
+            {
+                List<Education> orderedListByDesc = educations.OrderByDescending(e => e.CreatedDate).ToList();
+
+                foreach (Education item in orderedListByDesc)
+                {
+                    sortCreatedDateDtos.Add(new SortCreatedDateDto() { Education = item.Name, CreatedDate = item.CreatedDate });
+                }
+            }
+
+            return sortCreatedDateDtos;
+         
+
+        }
+
         public async Task<ResponseObjectDto> UpdateAsync(Education education)
         {
             if (education is null) throw new ArgumentNullException();
