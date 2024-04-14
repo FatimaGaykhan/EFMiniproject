@@ -698,6 +698,89 @@ namespace EFCourseApp.Controllers
                 ConsoleColor.Red.WriteConsole(ex.Message);
             }
         }
+
+        public async Task FilterByEducationNameAsync()
+        {
+            try
+            {
+                List<Education> educations = await _educationService.GetAllAsync();
+                if (educations.Count == 0)
+                {
+                    ConsoleColor.Red.WriteConsole("Data Not Added Yet");
+                }
+
+                foreach (Education education in educations)
+                {
+                    Console.WriteLine($"Education: {education.Name}");
+                }
+
+                Console.WriteLine("Choose Education Name:");
+                Text: string insertedText = Console.ReadLine();
+
+                string text = insertedText.Trim().ToLower();
+
+                if (string.IsNullOrWhiteSpace(text))
+                {
+                    ConsoleColor.Red.WriteConsole("Input can't be empty.Please add again");
+                    goto Text;
+                }
+
+                string symbols = "!@#$%^&*()_+-=[]{}|;:',.<>?";
+
+
+                bool isNumericByText = text.Any(char.IsDigit);
+
+
+                bool isSymbolByText = text.ContainsSymbol(symbols);
+
+                if (isSymbolByText)
+                {
+                    ConsoleColor.Red.WriteConsole("Text format is wrong. Please add again");
+                    goto Text;
+                }
+
+                if (isNumericByText)
+                {
+                    ConsoleColor.Red.WriteConsole("Text format is wrong. Please add again");
+                    goto Text;
+                }
+
+
+                bool isExist = educations.Any(e => e.Name == text);
+
+                if (isExist)
+                {
+                    List<GroupFilterByEducationDto> result = await _groupService.FilterByEducationNameAsync(text);
+
+                    if(result.Count==0)
+                    {
+                        ConsoleColor.Red.WriteConsole("Data Not Added Yet");
+                    }
+
+                    
+
+                    foreach (GroupFilterByEducationDto item in result)
+                    {
+                        foreach (var group in item.Groups)
+                        {
+                            ConsoleColor.Cyan.WriteConsole($"Group: {group}");
+                        }
+                    }
+
+                }
+                else
+                {
+                    ConsoleColor.Red.WriteConsole("Data Not Found");
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                ConsoleColor.Red.WriteConsole(ex.Message);
+            }
+        }
 	}
 }
 

@@ -42,6 +42,20 @@ namespace Service.Services
             return new ResponseObjectDto() { Message = "This group successfully deleted", StatusCode = 200 };
         }
 
+        public async Task<List<GroupFilterByEducationDto>> FilterByEducationNameAsync(string text)
+        {
+            List<Group> groups = await _groupRepository.GetAllAsync(g => g.Education.Name==text, "Education");
+            List<GroupFilterByEducationDto> groupFilterByEducationDto = new();
+
+            foreach (Group group in groups)
+            {
+                groupFilterByEducationDto.Add(new GroupFilterByEducationDto() { Education = group.Education.Name, Groups = group.Education.Groups.Select(g=>g.Name).ToList() });
+
+            }
+            return groupFilterByEducationDto;
+
+        }
+
         public async Task<List<Group>> GetAllAsync()
         {
             return await _groupRepository.GetAllAsync();

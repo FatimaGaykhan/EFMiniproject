@@ -15,6 +15,7 @@ namespace Service.Services.Interfaces
         Task<List<Group>> SearchByGroupName(string group);
         Task<List<GroupWithEducationIdDto>> GetAllWithEducationId(int id);
         Task<List<SortCapacityDto>> SortWithCapacity(string text);
+        Task<List<GroupFilterByEducationDto>> FilterByEducationNameAsync(string text);
         //FilterByEducationName,
         //SortWithCapacity
     }

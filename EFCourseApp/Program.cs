@@ -34,3 +34,5 @@ GroupController groupController = new GroupController();
 //await educationController.SortWithCreatedDateAsync();
 
 //await groupController.SortWithCapacityAsync();
+
+await groupController.FilterByEducationNameAsync();
