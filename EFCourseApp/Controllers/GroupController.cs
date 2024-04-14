@@ -115,6 +115,14 @@ namespace EFCourseApp.Controllers
                 bool isCorrectEducationIdFormat = int.TryParse(educationIdStr, out educationId);
 
                 bool isExist = educations.Exists(m => m.Id == educationId);
+
+                bool isCorrectEducationIdFormatForSymbol = educationIdStr.All(char.IsDigit);
+
+                if (!isCorrectEducationIdFormatForSymbol)
+                {
+                    ConsoleColor.Red.WriteConsole("Education Id format is wrong.Please add again");
+                    goto EducationId;
+                }
                 if (!isExist)
                 {
                     ConsoleColor.Red.WriteConsole("Education with this ID was not found.PLease add again");
@@ -134,13 +142,7 @@ namespace EFCourseApp.Controllers
                 }
 
 
-                bool isCorrectEducationIdFormatForSymbol = educationIdStr.All(char.IsDigit);
-
-                if (!isCorrectEducationIdFormatForSymbol)
-                {
-                    ConsoleColor.Red.WriteConsole("Education Id format is wrong.Please add again");
-                    goto EducationId;
-                }
+               
 
 
                 await _groupService.CreateAsync(new Group { Name = groupName,Capacity=capacity, EducationId=educationId , CreatedDate = DateTime.Now });
@@ -473,17 +475,11 @@ namespace EFCourseApp.Controllers
 
                         bool isCorrectEducationIdFormat = int.TryParse(strEducationId, out educationId);
 
-                       
-
-                        Education educationResult = await _educationService.GetByIdAsync(educationId);
-
-                        if (educationResult is null) throw new NotFoundException(ResponseMessages.DataNotFound);
-
-                        //if (!isCorrectEducationIdFormat)
-                        //{
-                        //    ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
-                        //    goto EducationId;
-                        //}
+                        if (!isCorrectEducationIdFormat)
+                        {
+                            ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
+                            goto EducationId;
+                        }
 
                         bool isSymbolByEducationId = strEducationId.ContainsSymbol(symbols);
 
@@ -492,6 +488,12 @@ namespace EFCourseApp.Controllers
                             ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
                             goto EducationId;
                         }
+
+                        Education educationResult = await _educationService.GetByIdAsync(educationId);
+
+                        if (educationResult is null) throw new NotFoundException(ResponseMessages.DataNotFound);
+
+                     
 
 
 

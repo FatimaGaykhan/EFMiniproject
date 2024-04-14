@@ -3,7 +3,15 @@ namespace Service.Services.Helpers.Enums
 {
 	public enum OperationType
 	{
-        GroupCreate = 1,
+        EducationCreate=1,
+        EducationUpdate,
+        EducationDelete,
+        GetEducationById,
+        GetAllEducations,
+        GetAllEducationWithGroups,
+        SortWithCreatedDate,
+        SearchByEducationName,
+        GroupCreate ,
         GroupUpdate,
         GroupDelete,
         GetGroupById,
@@ -12,14 +20,7 @@ namespace Service.Services.Helpers.Enums
         GetAllWithEducationId,
         SortWithCapacity,
         SearchGroupByName,
-        EducationCreate,
-        EducationUpdate,
-        EducationDelete,
-        GetEducationById,
-        GetAllEducations,
-        GetAllEducationWithGroups,
-        SortWithCreatedDate,
-        SearchByEducationName,
+       
     }
 }
 
