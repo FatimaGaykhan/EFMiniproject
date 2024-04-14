@@ -6,21 +6,22 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="EFCourseApp/Controllers/EducationController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="EFCourseApp/Program.cs">
     <Files>
-      <File FileName="EFCourseApp/Controllers/EducationController.cs" Line="554" Column="55" />
-      <File FileName="Service/Services/EducationService.cs" Line="96" Column="1" />
-      <File FileName="EFCourseApp/Program.cs" Line="34" Column="54" />
+      <File FileName="EFCourseApp/Controllers/EducationController.cs" Line="508" Column="12" />
+      <File FileName="Service/Services/EducationService.cs" Line="82" Column="13" />
+      <File FileName="EFCourseApp/Program.cs" Line="37" Column="1" />
       <File FileName="Service/Services/Interfaces/IEducationService.cs" Line="17" Column="78" />
       <File FileName="Domain/Models/Education.cs" />
-      <File FileName="Service/Services/Interfaces/IGroupService.cs" />
-      <File FileName="Service/Services/GroupService.cs" Line="53" Column="103" />
-      <File FileName="EFCourseApp/Controllers/GroupController.cs" Line="321" Column="40" />
+      <File FileName="Service/Services/Interfaces/IGroupService.cs" Line="17" Column="67" />
+      <File FileName="Service/Services/GroupService.cs" Line="105" Column="37" />
+      <File FileName="EFCourseApp/Controllers/GroupController.cs" Line="683" Column="104" />
       <File FileName="Service/Services/DTOs/Educations/EducationWithGroupDto.cs" Line="12" Column="4" />
       <File FileName="Repository/Repositories/BaseRepository.cs" />
-      <File FileName="Service/Services/DTOs/Educations/SortCreatedDateDto.cs" Line="7" Column="44" />
+      <File FileName="Service/Services/DTOs/Educations/SortCreatedDateDto.cs" />
       <File FileName="Domain/Models/Group.cs" />
-      <File FileName="Service/Services/DTOs/Groups/GroupWithEducationIdDto.cs" Line="7" Column="45" />
+      <File FileName="Service/Services/DTOs/Groups/GroupWithEducationIdDto.cs" />
+      <File FileName="Service/Services/DTOs/Groups/SortCapacityDto.cs" Line="9" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -30,9 +31,8 @@
               <Node name="Models" expanded="True" />
             </Node>
             <Node name="EFCourseApp" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="EducationController.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
+              <Node name="Program.cs" selected="True" />
             </Node>
             <Node name="Repository" expanded="True">
               <Node name="Data" expanded="True" />

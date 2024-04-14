@@ -16,9 +16,6 @@ namespace Service.Services.Interfaces
         Task<List<EducationWithGroupDto>> GetAllWithGroupsAsync();
         Task<List<SortCreatedDateDto>> SortWithCreatedDateAsync(string text);
 
-        //GetAllGroupsByEducation,
-        //SortByCreatedDate,
-
     }
 }
 

@@ -75,6 +75,36 @@ namespace Service.Services
             return await _groupRepository.GetAllAsync(m => m.Name == group.Trim() || m.Name.Contains(group.Trim()));
         }
 
+        public async Task<List<SortCapacityDto>> SortWithCapacity(string text)
+        {
+            List<Group> groups = await _groupRepository.GetAllAsync();
+
+            List<SortCapacityDto> sortCapacityDtos = new();
+            if (text == "asc")
+            {
+
+                List<Group> orderedListByAsc = groups.OrderBy(g => g.Capacity).ToList();
+
+
+                foreach (Group item in orderedListByAsc)
+                {
+                    sortCapacityDtos.Add(new SortCapacityDto() { Group = item.Name, Capacity = item.Capacity });
+                }
+            }
+
+            if (text == "desc")
+            {
+                List<Group> orderedListByDesc = groups.OrderByDescending(g => g.Capacity).ToList();
+
+                foreach(Group item in orderedListByDesc)
+                {
+                    sortCapacityDtos.Add(new SortCapacityDto() { Group = item.Name, Capacity = item.Capacity });
+                }
+            }
+
+            return sortCapacityDtos;
+        }
+
         public async Task<ResponseObjectDto> UpdateAsync(Group group)
         {
             if (group is null) throw new ArgumentNullException();

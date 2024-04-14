@@ -2,6 +2,7 @@
 using System.Drawing;
 using Domain.Models;
 using Service.Services;
+using Service.Services.DTOs.Educations;
 using Service.Services.DTOs.Groups;
 using Service.Services.Helpers.Constants;
 using Service.Services.Helpers.Exceptions;
@@ -628,6 +629,73 @@ namespace EFCourseApp.Controllers
             {
                 ConsoleColor.Red.WriteConsole(ex.Message);
 
+            }
+        }
+
+        public async Task SortWithCapacityAsync()
+        {
+            try
+            {
+                Console.WriteLine("Choose text: asc or desc");
+                Text: string insertedText = Console.ReadLine();
+
+                string text = insertedText.Trim().ToLower();
+
+                if (string.IsNullOrWhiteSpace(text))
+                {
+                    ConsoleColor.Red.WriteConsole("Input can't be empty.Please add again");
+                    goto Text;
+                }
+
+
+                string symbols = "!@#$%^&*()_+-=[]{}|;:',.<>?";
+
+
+                bool isNumericByText = text.Any(char.IsDigit);
+
+
+                bool isSymbolByText = text.ContainsSymbol(symbols);
+
+                if (isSymbolByText)
+                {
+                    ConsoleColor.Red.WriteConsole("Text format is wrong. Please add again");
+                    goto Text;
+                }
+
+                if (isNumericByText)
+                {
+                    ConsoleColor.Red.WriteConsole("Text format is wrong. Please add again");
+                    goto Text;
+                }
+
+                if (text == "asc" || text == "desc")
+                {
+                    List<SortCapacityDto> result = await _groupService.SortWithCapacity(text);
+
+                    if (result.Count == 0)
+                    {
+                        ConsoleColor.Red.WriteConsole("Data Not Added Yet");
+                    }
+
+
+                    foreach (SortCapacityDto item in result)
+                    {
+                        ConsoleColor.Cyan.WriteConsole($"Group: {item.Group} , Capacity: {item.Capacity}");
+                    }
+
+                }
+                else
+                {
+                    ConsoleColor.Red.WriteConsole("Text must be asc or desc. Please add again");
+                    goto Text;
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                ConsoleColor.Red.WriteConsole(ex.Message);
             }
         }
 	}
